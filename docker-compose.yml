@@ -1,27 +1,3 @@
-# zero-backup
-> nodejs实现的数据备份方案
-
-通过mysql备份镜像对数据进行备份，同时nodejs的API可对生成的备份文件进行下载和查看操作。
-
-**API接口:**  
-
-- GET: `/api/backup/files` 
-
-  分页形式查找并返回数据备份文件。
-
-- GET: `/api/backup/download/:fileName`
-
-  通过文件名称下载备份文件
-
-- GET: `/api/backup/doBackup`
-
-  手动触发一次数据备份
-
-> 默认端口 8080
-
-**docker-compose.yml:**
-
-```yml
 version: '3'
 services:
   mysqlbackup:
@@ -32,7 +8,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./mysql_backup/data:/var/mysqlbackup/data
       - ./mysql_backup/log:/var/mysqlbackup/log
-      # 备份api
       - ./mysql_backup/backup_api:/backup_api
       - ./mysql_backup/crond.sh:/usr/local/bin/crond.sh
     environment:
@@ -44,5 +19,3 @@ services:
       MYSQL_USER_PASSWORD: root
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
-```
-
