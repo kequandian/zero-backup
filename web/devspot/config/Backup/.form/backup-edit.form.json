@@ -1,0 +1,355 @@
+{
+  "layout": "Content",
+  "title": "成本",
+  "type": "Canvas",
+  "items": [
+    {
+      "type": "Grid",
+      "title": "1:1",
+      "value": [
+        12,
+        12
+      ],
+      "tips": "一行分为 24 份",
+      "items": [
+        {
+          "title": "模态框-列表单选",
+          "type": "ModalRadio",
+          "options": {
+            "field": {
+              "value": "projectId"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "项目"
+              }
+            },
+            "config": {
+              "title": {
+                "label": "引导文本",
+                "value": "选择项目"
+              },
+              "label": {
+                "label": "展示文本"
+              },
+              "editLabel": {
+                "label": "编辑时展示文本"
+              },
+              "value": {
+                "label": "提交的字段",
+                "value": "id"
+              },
+              "API": {
+                "label": "API",
+                "value": "/api/crud/project/projects"
+              },
+              "fields": {
+                "label": "弹出模态框中列表字段",
+                "type": "tableField",
+                "value": [
+                  {
+                    "label": "项目名称",
+                    "field": "name"
+                  }
+                ]
+              },
+              "saveData": {
+                "label": "额外保存选中的数据",
+                "type": "saveData",
+                "tLabel": "把选择的数据的字段",
+                "tValue": "保存为以下字段"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 1,
+          "index": 0,
+          "id": 2
+        },
+        {
+          "title": "模态框-列表单选",
+          "type": "ModalRadio",
+          "options": {
+            "field": {
+              "value": "venderId"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "供应商"
+              }
+            },
+            "config": {
+              "title": {
+                "label": "引导文本",
+                "value": "选择供应商"
+              },
+              "label": {
+                "label": "展示文本"
+              },
+              "editLabel": {
+                "label": "编辑时展示文本"
+              },
+              "value": {
+                "label": "提交的字段"
+              },
+              "API": {
+                "label": "API",
+                "value": "/api/crud/vms/venders"
+              },
+              "fields": {
+                "label": "弹出模态框中列表字段",
+                "type": "tableField",
+                "value": [
+                  {
+                    "label": "供应商名称",
+                    "field": "name"
+                  }
+                ]
+              },
+              "saveData": {
+                "label": "额外保存选中的数据",
+                "type": "saveData",
+                "tLabel": "把选择的数据的字段",
+                "tValue": "保存为以下字段"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 1,
+          "index": 1,
+          "id": 3
+        }
+      ],
+      "id": 1
+    },
+    {
+      "type": "Grid",
+      "title": "1:1",
+      "value": [
+        12,
+        12
+      ],
+      "tips": "一行分为 24 份",
+      "items": [
+        {
+          "title": "输入框",
+          "type": "Input",
+          "options": {
+            "field": {
+              "value": "beneficiary"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "收款方"
+              },
+              "placeholder": {
+                "label": "占位符",
+                "value": "请输入……"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填",
+                "value": "required"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 6,
+          "index": 0,
+          "id": 7
+        },
+        {
+          "title": "输入框",
+          "type": "Input",
+          "options": {
+            "field": {
+              "value": "balance"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "金额"
+              },
+              "placeholder": {
+                "label": "占位符",
+                "value": "请输入……"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填",
+                "value": "required"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 6,
+          "index": 1,
+          "id": 8
+        }
+      ],
+      "id": 6
+    },
+    {
+      "type": "Grid",
+      "title": "1",
+      "value": [
+        24
+      ],
+      "tips": "一行分为 24 份",
+      "items": [
+        {
+          "title": "文本域",
+          "type": "TextArea",
+          "options": {
+            "field": {
+              "value": "note"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "备注"
+              },
+              "placeholder": {
+                "label": "占位符",
+                "value": "请输入……"
+              },
+              "minRows": {
+                "label": "最小行数",
+                "value": 2
+              },
+              "maxRows": {
+                "label": "最大行数"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 9,
+          "index": 0,
+          "id": 10
+        }
+      ],
+      "id": 9
+    },
+    {
+      "type": "Grid",
+      "title": "1:1",
+      "value": [
+        12,
+        12
+      ],
+      "tips": "一行分为 24 份",
+      "items": [
+        {
+          "title": "输入框",
+          "type": "Input",
+          "options": {
+            "field": {
+              "value": "approvedBy"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "经手人"
+              },
+              "placeholder": {
+                "label": "占位符",
+                "value": "请输入……"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填",
+                "value": "required"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 11,
+          "index": 0,
+          "id": 12
+        },
+        {
+          "title": "模态框-列表单选",
+          "type": "ModalRadio",
+          "options": {
+            "field": {
+              "value": "categoryId"
+            },
+            "base": {
+              "label": {
+                "label": "字段名",
+                "value": "分类"
+              }
+            },
+            "config": {
+              "title": {
+                "label": "引导文本",
+                "value": "选择分类"
+              },
+              "label": {
+                "label": "展示文本",
+                "value": "name"
+              },
+              "editLabel": {
+                "label": "编辑时展示文本",
+                "value": "name"
+              },
+              "value": {
+                "label": "提交的字段",
+                "value": "id"
+              },
+              "API": {
+                "label": "API",
+                "value": "/api/category/categories/all/list?scope=cost"
+              },
+              "fields": {
+                "label": "弹出模态框中列表字段",
+                "type": "tableField",
+                "value": []
+              },
+              "saveData": {
+                "label": "额外保存选中的数据",
+                "type": "saveData",
+                "tLabel": "把选择的数据的字段",
+                "tValue": "保存为以下字段"
+              }
+            },
+            "rules": {
+              "required": {
+                "label": "必填"
+              }
+            },
+            "expect": {}
+          },
+          "parentId": 11,
+          "index": 1,
+          "id": 13
+        }
+      ],
+      "id": 11
+    }
+  ],
+  "id": 0,
+  "finalId": 14,
+  "fieldCount": 9
+}
