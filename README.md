@@ -16,6 +16,12 @@
 - GET: `/api/backup/doBackup`
 
   手动触发一次数据备份
+  
+- GET：`/api/compare`
+
+  >Tips：需确保数据库端口为互通状态（默认使用root账号连接数据库）
+
+  根据docker-compose.yml中配置的环境变量进行数据库对比
 
 > 默认端口 8080
 
@@ -44,5 +50,15 @@ services:
       MYSQL_USER_PASSWORD: root
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
+      # 源服务器信息
+      # MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.cn:pw
+      # 源数据库信息
+      MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      # 本地数据库信息
+      MYDIFF_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      # 源数据库密码
+      MYDIFF_ORIGIN_DATA_PASSWORD: root
+      # 本地数据库密码
+      MYDIFF_DATA_PASSWORD: zxcABC123
 ```
 
