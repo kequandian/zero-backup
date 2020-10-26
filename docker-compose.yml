@@ -19,3 +19,11 @@ services:
       MYSQL_USER_PASSWORD: root
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
+      MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.cn:pw
+      MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      MYDIFF_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      MYDIFF_ORIGIN_DATA_PASSWORD: root
+      MYDIFF_DATA_PASSWORD: zxcABC123
+      # ip@port@user@password@database@table
+      # TEST_ENV: 172.0.0.3@3306@root@root@test@cr_issue_task
+      # PROD_ENV: 172.0.0.2@3306@root@zxcABC123@cinema@cr_issue_task
