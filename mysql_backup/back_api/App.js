@@ -109,3 +109,11 @@ var server = app.listen(8080, function () {
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 })
+
+app.get("/api/compare",function(req,res){
+	message = {
+		"code": "200",
+		"message": shell.exec("sh ../db-diff.sh")
+	}
+	res.send(message);
+})
