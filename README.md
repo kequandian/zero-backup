@@ -17,7 +17,7 @@
 
   手动触发一次数据备份
   
-- GET：`/api/backup/compare`
+- GET：`/api/backup/diff/compare`
 
   >Tips：需确保数据库端口为互通状态（默认使用root账号连接数据库）
 
