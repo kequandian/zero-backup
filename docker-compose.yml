@@ -22,6 +22,8 @@ services:
       MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.cn:pw
       MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname[cr_issue_task]
       MYDIFF_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      MYDIFF_ORIGIN_DATA_USER: root
+      MYDIFF_DATA_USER: root
       MYDIFF_ORIGIN_DATA_PASSWORD: root
       MYDIFF_DATA_PASSWORD: zxcABC123
       # ip@port@user@password@database@table

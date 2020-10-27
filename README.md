@@ -17,7 +17,7 @@
 
   手动触发一次数据备份
   
-- GET：`/api/compare`
+- GET：`/api/backup/compare`
 
   >Tips：需确保数据库端口为互通状态（默认使用root账号连接数据库）
 
@@ -60,5 +60,9 @@ services:
       MYDIFF_ORIGIN_DATA_PASSWORD: root
       # 本地数据库密码
       MYDIFF_DATA_PASSWORD: zxcABC123
+      # 源数据库账号
+      MYDIFF_ORIGIN_DATA_USER: root
+      # 本地数据库账号
+      MYDIFF_DATA_USER: root
 ```
 

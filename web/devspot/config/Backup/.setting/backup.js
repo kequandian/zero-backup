@@ -5,5 +5,5 @@ module.exports = {
   "getAPI": "/api/backup/download/[id]",
   "createAPI": "/api/backup/doBackup",
   "updateAPI": "/api/backup/files/[id]",
-  "compareAPI": "/api/compare"
+  "compareAPI": "/api/backup/diff/compare"
 }

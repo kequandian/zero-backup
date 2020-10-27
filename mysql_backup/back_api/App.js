@@ -101,13 +101,14 @@ app.get("/api/backup/doBackup", function(req, res) {
 	res.send(message);
 })
 
-app.get("/api/compare",function(req,res){
+app.get("/api/backup/diff/compare",function(req,res){
 	message = {
 		"code": "200",
 		"message": shell.exec("sh ../db-diff.sh")
 	}
 	res.send(message);
 })
+
 var server = app.listen(8080, function () {
 
   var host = server.address().address
