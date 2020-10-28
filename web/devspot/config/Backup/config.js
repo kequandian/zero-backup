@@ -5,10 +5,8 @@ module.exports = {
   title: setting.pageName,
   items: [
     {
-      layout: 'Empty',
       component: 'Search',
       config: {
-        share: 'backup',
         fields: [
            {
             "field": "search",
@@ -19,10 +17,8 @@ module.exports = {
       },
     },
     {
-      layout: 'Empty',
       component: 'Table',
       config: {
-        share: 'backup',
         API: {
           listAPI: setting.listAPI,
           deleteAPI: setting.deleteAPI,
@@ -88,5 +84,9 @@ module.exports = {
         ],
       },
     },
+  //  {
+  //     component: 'RequestResult',
+  //     config: {},
+  //   },
   ],
 };
