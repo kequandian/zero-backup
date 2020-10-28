@@ -35,6 +35,14 @@ module.exports = {
               "API": "/api/backup/doBackup",
               "method": "get"
             }
+          },
+          {
+            "title": "数据库对比",
+            "type": "request-message",
+            "options": {
+              "API": "/api/backup/diff/compare",
+              "method": "get"
+            }
           }
         ],
         fields: [
@@ -45,7 +53,6 @@ module.exports = {
 		      },
         ],
         operation: [
-
           {
             title: '下载', type: 'export-excel',
             "type": "request",
@@ -56,6 +63,15 @@ module.exports = {
               method: 'download',
             },
           },
+          // {
+          //   title: '回滚', 
+          //   type: "request",
+          //   options: {
+          //     fileNameField:"id",
+          //     "outside": true,
+          //     API: '',
+          //   },
+          // },
           /*{
             "title": "下载",
             "type": "request",
