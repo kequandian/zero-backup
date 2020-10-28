@@ -10,6 +10,7 @@ services:
       - ./mysql_backup/log:/var/mysqlbackup/log
       - ./mysql_backup/backup_api:/backup_api
       - ./mysql_backup/crond.sh:/usr/local/bin/crond.sh
+      - ./mysql_backup/db-diff.sh:/usr/local/bin/db-diff.sh
     environment:
       MYSQL_DB: some_db
       #TZ: "Asia/Shanghai"

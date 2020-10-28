@@ -104,7 +104,7 @@ app.get("/api/backup/doBackup", function(req, res) {
 app.get("/api/backup/diff/compare",function(req,res){
 	message = {
 		"code": "200",
-		"message": shell.exec("db-diff")
+		"message": shell.exec("sh /usr/local/bin/db-diff.sh")
 	}
 	res.send(message);
 })
