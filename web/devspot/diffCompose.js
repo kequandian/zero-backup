@@ -1,5 +1,8 @@
 import React from 'react';
-import { Alert, Button } from 'antd';
+import { Alert, Button, Layout } from 'antd';
+
+import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
+const { Content } = Layout;
 
 class DiffCompose extends React.Component {
   state = {
@@ -87,17 +90,20 @@ class DiffCompose extends React.Component {
     }
 
     return <>
+     <Content style={{ padding: '20px', background: '#FFFFFF', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }}>
       <Button type="primary" ghost loading={loading} onClick={() => this.getDiffComposeInfo(_this)}>
-        Loading
-      </Button>
-      <div style={{height:20}}></div>
-      {resultMessage ? (
-        <Alert
-          closable
-          onClose={handleClose}
-          message={<pre>{resultMessage}</pre>}
-        />
-      ) : null}
+          数据库对比
+        </Button>
+        <div style={{height:20}}></div>
+        {resultMessage ? (
+          <Alert
+            closable
+            onClose={handleClose}
+            message={<pre>{resultMessage}</pre>}
+          />
+        ) : null}
+     </Content>
+      
     </>
 
   }

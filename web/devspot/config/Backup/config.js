@@ -32,14 +32,14 @@ module.exports = {
               "method": "get"
             }
           },
-          {
-            "title": "数据库对比",
-            "type": "request-message",
-            "options": {
-              "API": "/api/backup/diff/compare",
-              "method": "get"
-            }
-          }
+          // {
+          //   "title": "数据库对比",
+          //   "type": "request-message",
+          //   "options": {
+          //     "API": "/api/backup/diff/compare",
+          //     "method": "get"
+          //   }
+          // }
         ],
         fields: [
 
