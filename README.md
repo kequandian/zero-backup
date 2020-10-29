@@ -17,7 +17,7 @@
 
   手动触发一次数据备份
   
-- GET：`/api/backup/diff/compare`
+- GET：`/api/backup/diff/compare?table=originTable:localTable`
 
   >Tips：需确保数据库端口为互通状态（默认使用root账号连接数据库）
 
@@ -53,9 +53,9 @@ services:
       # 源服务器信息
       # MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.cn:pw
       # 源数据库信息
-      MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname
       # 本地数据库信息
-      MYDIFF_DATA: mysqlserver:3306/dbname[cr_issue_task]
+      MYDIFF_DATA: mysqlserver:3306/dbname
       # 源数据库密码
       MYDIFF_ORIGIN_DATA_PASSWORD: root
       # 本地数据库密码

@@ -102,9 +102,14 @@ app.get("/api/backup/doBackup", function(req, res) {
 })
 
 app.get("/api/backup/diff/compare",function(req,res){
+	let table = req.query.table;
+	let result = "Please provide query parameters like <originTable>:<localTable>";
+	if (table == "" || (/\w+:\w+/g).test(table)) {
+		result = shell.exec("sh /usr/local/bin/db-diff.sh " + table)
+	}
 	message = {
 		"code": "200",
-		"message": shell.exec("sh /usr/local/bin/db-diff.sh")
+		"message": result
 	}
 	res.send(message);
 })
@@ -115,5 +120,4 @@ var server = app.listen(8080, function () {
   var port = server.address().port
 
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
-
 })
