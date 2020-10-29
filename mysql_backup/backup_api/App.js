@@ -105,7 +105,7 @@ app.get("/api/backup/diff/compare",function(req,res){
 	let table = req.query.table;
 	let result = "Please provide query parameters like <originTable>:<localTable>";
 	if (table == "" || (/\w+:\w+/g).test(table)) {
-		result = shell.exec("sh /usr/local/bin/db-diff.sh " + table)
+		result = shell.exec("bash /usr/local/bin/db-diff.sh " + table)
 	}
 	message = {
 		"code": "200",
