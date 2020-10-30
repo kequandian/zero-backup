@@ -14,9 +14,10 @@ class DiffCompose extends React.Component {
     _this.setState({
       loading: true
     })
-    const API = "http://192.168.3.236:8888/api/backup/diff/compare";
+    
+    const API = `${getEndpoint()}/api/backup/diff/compare`;
     const queryData = {
-
+      table:''
     }
     this.promiseAjax(API, queryData)
       .then(responseData => {
