@@ -100,7 +100,7 @@ app.post("/api/backup/doBackup", function (req, res) {
     console.log("exec shell script path : " + backup_script_path);
     let note = req.body.note;
     if (note != null && note != "") {
-      fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \".sql$\"  | head -n 1 |awk '{print $9}'")
+      fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \".sql$\"  | head -n 1 |awk '{print $9}'").replace(/[\n\t\r]/g,"");
   	  writeJson(fileName, note);
     }  
   message = {
