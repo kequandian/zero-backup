@@ -86,7 +86,7 @@ app.get("/api/backup/download/:fileName", function (req, res) {
   res.download(backup_dir + "/" + fileName, function (err) {
     if (err) {
       message = {
-        code: "4000",
+        code: 4000,
         message: "下载文件失败",
       };
       res.send(message);
@@ -100,11 +100,11 @@ app.post("/api/backup/doBackup", function (req, res) {
     console.log("exec shell script path : " + backup_script_path);
     let note = req.body.note;
     if (note != null && note != "") {
-      fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \"*.js\"  | head -n 1 |awk '{print $9}'")
-  	writeJson(fileName, note);
+      fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \".sql$\"  | head -n 1 |awk '{print $9}'").replace(/[\n\t\r]/g,"");
+  	  writeJson(fileName, note);
     }  
   message = {
-    code: "200",
+    code: 200,
     message: "备份执行成功",
   };
   res.send(message);
@@ -116,7 +116,7 @@ app.post("/api/backup/note", function (req, res) {
   let result = "Please input info.";
   if (note != null) result = writeJson(fileName, note);
   message = {
-    code: "200",
+    code: 200,
     message: result,
   };
   res.send(message);
@@ -130,7 +130,7 @@ app.get("/api/backup/diff/compare", function (req, res) {
     result = shell.exec("bash /usr/local/bin/db-diff.sh " + table);
   }
   message = {
-    code: "200",
+    code: 200,
     message: result,
   };
   res.send(message);
@@ -158,11 +158,9 @@ function writeJson(fileName, note) {
 }
 
 function getJson(fileName) {
-  fs.readFile(note_json_path, function (err, data) {
-    if (err) throw err;
-    var list = JSON.parse(data.toString());
-    return list[fileName];
-  });
+  var data = fs.readFileSync(note_json_path, "utf-8");
+  var list = JSON.parse(data.toString());
+  return list[fileName];
 }
 
 function deleteJson(fileName) {
@@ -174,7 +172,6 @@ function deleteJson(fileName) {
       err
     ) {
       if (err) throw err;
-      console.log("----------删除成功------------");
     });
   });
 }
