@@ -11,6 +11,7 @@ services:
       - ./mysql_backup/backup_api:/backup_api
       - ./mysql_backup/crond.sh:/usr/local/bin/crond.sh
       - ./mysql_backup/db-diff.sh:/usr/local/bin/db-diff.sh
+      - ./mysql_backup/note.json:/usr/local/bin/note.json
     environment:
       MYSQL_DB: cinema
       #TZ: "Asia/Shanghai"
