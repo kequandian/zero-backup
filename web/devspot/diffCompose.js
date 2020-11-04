@@ -23,7 +23,7 @@ class DiffCompose extends React.Component {
       .then(responseData => {
         console.log('request rst: ', responseData);
 
-        if (responseData && responseData.code === "200") {
+        if (responseData && responseData.code === 200) {
           _this.setState({
             loading: false,
             resultMessage: responseData.message

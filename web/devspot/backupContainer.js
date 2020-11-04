@@ -5,8 +5,10 @@ import Backup from './backup';
 // import APIContainerButton from './components/APIContainerButton'; 
 import DiffCompose from './diffCompose';
 export default (props) => (
-    <div style={{marginBottom:'16px'}}>
+    <>
+        <div style={{marginBottom:'16px'}}>
+            <DiffCompose/>
+        </div>
         <Backup />
-        <DiffCompose/>
-    </div>
+    </>
 );
