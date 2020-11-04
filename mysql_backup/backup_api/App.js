@@ -3,18 +3,23 @@ var app = express();
 var fs = require("fs");
 var path = require("path");
 var shell = require("shelljs");
+const bodyParser = require("body-parser")
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 module.exports = require("./config.js");
 
 const backup_dir = fileDir;
 const backup_script_path = scriptPath;
 const latest = "latest";
+const note_json_path = "/usr/local/bin/note.json";
 
 console.log("back_dir : " + backup_dir);
 console.log("backup_script_path : " + backup_script_path);
 
 class BackUpFile {
-  constructor(name) {
+  constructor(name, note) {
     this.id = name;
+    this.note = note;
   }
 }
 
@@ -45,7 +50,7 @@ app.get("/api/backup/files", function (req, res) {
   let fileArr = [];
   files.forEach(function (fileName) {
     if (fileName != latest) {
-      fileArr.push(new BackUpFile(fileName));
+      fileArr.push(new BackUpFile(fileName, getJson(fileName)));
     }
   });
   let total = fileArr.length;
@@ -90,17 +95,29 @@ app.get("/api/backup/download/:fileName", function (req, res) {
 });
 
 // 手动备份
-app.get("/api/backup/doBackup", function (req, res) {
-  shell.exec(backup_script_path);
-  console.log("exec shell script path : " + backup_script_path);
-  let note = req.query.note;
-  if (note != null && note != "") {
-    fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \"*.js\"  | head -n 1 |awk '{print $9}'")
-	writeJson(fileName, note);
-  }
+app.post("/api/backup/doBackup", function (req, res) {
+    shell.exec(backup_script_path);
+    console.log("exec shell script path : " + backup_script_path);
+    let note = req.body.note;
+    if (note != null && note != "") {
+      fileName = shell.exec("ls -lt " + backup_dir + " | grep -E \"*.js\"  | head -n 1 |awk '{print $9}'")
+  	writeJson(fileName, note);
+    }  
   message = {
     code: "200",
     message: "备份执行成功",
+  };
+  res.send(message);
+});
+
+app.post("/api/backup/note", function (req, res) {
+  let fileName = req.body.fileName;
+  let note = req.body.note;
+  let result = "Please input info.";
+  if (note != null) result = writeJson(fileName, note);
+  message = {
+    code: "200",
+    message: result,
   };
   res.send(message);
 });
@@ -122,29 +139,41 @@ app.get("/api/backup/diff/compare", function (req, res) {
 var server = app.listen(8080, function () {
   var host = server.address().address;
   var port = server.address().port;
-//   writeJson("c.txt", "aest");
-//   deleteJson("c.txt");
+  //   writeJson("c.txt", "aest");
+  //   deleteJson("c.txt");
   console.log("应用实例，访问地址为 http://%s:%s", host, port);
 });
 
 function writeJson(fileName, note) {
-  fs.readFile("/usr/local/bin/note.json", function (err, data) {
+  fs.readFile(note_json_path, function (err, data) {
     if (err) throw err;
     var list = JSON.parse(data.toString());
     list[fileName] = note;
-    fs.writeFile("/usr/local/bin/note.json", JSON.stringify(list, undefined, 2), function (err) {
+    fs.writeFile(note_json_path, JSON.stringify(list, undefined, 2), function (
+      err
+    ) {
       if (err) throw err;
     });
   });
 }
 
-function deleteJson(fileName) {
-  fs.readFile("/usr/local/bin/note.json", function (err, data) {
+function getJson(fileName) {
+  fs.readFile(note_json_path, function (err, data) {
     if (err) throw err;
     var list = JSON.parse(data.toString());
-    delete list[fileName]
-    fs.writeFile("/usr/local/bin/note.json", JSON.stringify(list, undefined, 2), function (err) {
-	  if (err) throw err;
+    return list[fileName];
+  });
+}
+
+function deleteJson(fileName) {
+  fs.readFile(note_json_path, function (err, data) {
+    if (err) throw err;
+    var list = JSON.parse(data.toString());
+    delete list[fileName];
+    fs.writeFile(note_json_path, JSON.stringify(list, undefined, 2), function (
+      err
+    ) {
+      if (err) throw err;
       console.log("----------删除成功------------");
     });
   });
