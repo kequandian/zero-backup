@@ -39,11 +39,11 @@ app.all("*", function (req, res, next) {
 // 查看备份详情
 app.get("/api/backup/file/:fileName", function (req, res) {
   let fileName = req.params.fileName;
-  let result = "查询失败";
-  result = new BackUpFile(fileName, getJson(fileName));
+  let data = new BackUpFile(fileName, getJson(fileName));
   message = {
     code: 200,
-    message: result,
+    data: data,
+    message: "查询成功",
   };
   res.send(message);
 });
