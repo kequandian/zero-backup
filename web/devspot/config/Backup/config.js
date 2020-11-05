@@ -74,6 +74,37 @@ module.exports = {
         ],
         operation: [
           {
+            title: '编辑', type: 'modal',
+            options: {
+              modalTitle: '编辑备注',
+              modalWidth: 600,
+              outside: true,
+              layout: 'Empty',
+              items: [
+                {
+                  layout: 'Empty',
+                  component: 'Form',
+                  config: {
+                    layout: 'Grid',
+                    API: {
+                      getAPI: '/api/backup/file/(id)',
+                      createAPI: '/api/backup/note',
+                    },
+                    fields: [
+                      {
+                        field: 'note', label: '', type: 'text-area',
+                        rules: ['required'],
+                      },
+                      {
+                        field: 'id', label: '', type: 'hidden',
+                      },
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
             title: '下载', type: 'export-excel',
             "type": "request",
             options: {
