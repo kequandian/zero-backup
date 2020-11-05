@@ -36,6 +36,18 @@ app.all("*", function (req, res, next) {
   /*让options请求快速返回*/ else next();
 });
 
+// 查看备份详情
+app.get("/api/backup/file/:fileName", function (req, res) {
+  let fileName = req.params.fileName;
+  let result = "查询失败";
+  result = new BackUpFile(fileName, getJson(fileName));
+  message = {
+    code: 200,
+    message: result,
+  };
+  res.send(message);
+});
+
 // 查找备份文件
 app.get("/api/backup/files", function (req, res) {
   // let list = [];
@@ -114,7 +126,10 @@ app.post("/api/backup/note", function (req, res) {
   let fileName = req.body.fileName;
   let note = req.body.note;
   let result = "Please input info.";
-  if (note != null) result = writeJson(fileName, note);
+  if (note != null) {
+    writeJson(fileName, note);
+    result = "更新成功"
+  }
   message = {
     code: 200,
     message: result,
@@ -149,9 +164,7 @@ function writeJson(fileName, note) {
     if (err) throw err;
     var list = JSON.parse(data.toString());
     list[fileName] = note;
-    fs.writeFile(note_json_path, JSON.stringify(list, undefined, 2), function (
-      err
-    ) {
+    fs.writeFile(note_json_path, JSON.stringify(list, undefined, 2), function (err) {
       if (err) throw err;
     });
   });
@@ -159,6 +172,7 @@ function writeJson(fileName, note) {
 
 function getJson(fileName) {
   var data = fs.readFileSync(note_json_path, "utf-8");
+  // var data = fs.readFileSync("../note.json", "utf-8");
   var list = JSON.parse(data.toString());
   return list[fileName];
 }
