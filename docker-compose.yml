@@ -22,8 +22,8 @@ services:
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
       MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.smallsaas.cn:pw
-      MYDIFF_ORIGIN_DATA: xingyu.cloud.smallsaas.cn:23306/cinema[ca_cinema]
-      MYDIFF_DATA: 192.168.3.236:3306/cinema[ca_cinema]
+      MYDIFF_ORIGIN_DATA: xingyu.cloud.smallsaas.cn:23306/cinema
+      MYDIFF_DATA: 192.168.3.236:3306/cinema
       MYDIFF_ORIGIN_DATA_USER: root
       MYDIFF_DATA_USER: root
       MYDIFF_ORIGIN_DATA_PASSWORD: rootAZaz@123

@@ -1,4 +1,4 @@
 import React from 'react';
-import BackupAdd from '@/pages/sys/config/Backup/add';
+import BackupAdd from '@/pages/devops/config/Backup/add';
 
 export default (props) => <BackupAdd />
