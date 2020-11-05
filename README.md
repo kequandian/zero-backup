@@ -5,21 +5,46 @@
 
 **API接口:**  
 
+- GET: `/api/backup/file/{fileName}` 
+
+​       查找并返回数据备份详情
+
 - GET: `/api/backup/files` 
 
-  分页形式查找并返回数据备份文件。
+  分页形式查找并返回数据备份文件
 
 - GET: `/api/backup/download/:fileName`
 
   通过文件名称下载备份文件
 
-- GET: `/api/backup/doBackup`
+- POST: `/api/backup/doBackup`
+
+  - Body（JSON）：
+
+  ```json
+  {
+      "note": "i am here"
+  }
+  ```
 
   手动触发一次数据备份
-  
+
+- POST: `/api/backup/note`
+
+  - Body（JSON）：
+
+  ```json
+  {
+      "fileName": "cinema-2020-10-28-02:15:00.sql",
+      "note": "i am here"
+  }
+  ```
+
+  用于根据文件名称更新备注内容
+
 - GET：`/api/backup/diff/compare?table=originTable:localTable`
 
-  >Tips：需确保数据库端口为互通状态（默认使用root账号连接数据库）
+  >Tips：需确保数据库端口为互通状态
 
   根据docker-compose.yml中配置的环境变量进行数据库对比
 
