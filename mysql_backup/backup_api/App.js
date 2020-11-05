@@ -123,7 +123,7 @@ app.post("/api/backup/doBackup", function (req, res) {
 });
 
 app.post("/api/backup/note", function (req, res) {
-  let fileName = req.body.fileName;
+  let fileName = req.body.id;
   let note = req.body.note;
   let result = "Please input info.";
   if (note != null) {

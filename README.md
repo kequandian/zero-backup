@@ -35,7 +35,7 @@
 
   ```json
   {
-      "fileName": "cinema-2020-10-28-02:15:00.sql",
+      "id": "cinema-2020-10-28-02:15:00.sql",
       "note": "i am here"
   }
   ```
