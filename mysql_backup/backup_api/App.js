@@ -46,7 +46,6 @@ app.get("/api/backup/rollback/:fileName", function (req, res) {
   }
   message = {
     code: 200,
-    data: data,
     message: result,
   };
   res.send(message);
