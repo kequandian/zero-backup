@@ -36,6 +36,22 @@ app.all("*", function (req, res, next) {
   /*让options请求快速返回*/ else next();
 });
 
+// 回滚备份
+app.post("/api/backup/rollback", function (req, res) {
+  let fileName = req.body.id;
+  let result = "Invalid argument"
+  if (fileName != null && fileName != "") {
+    shell.exec("mysql -h $DIFF_REMOTE -P $DIFF_REMOTE_PORT -u$DIFF_REMOTE_DB_USER -p$DIFF_REMOTE_DB_PWD $DIFF_REMOTE_DB < "+ backup_dir +"/" + fileName +" 2>/dev/null")
+    result = "回滚成功";
+  }
+  message = {
+    code: 200,
+    data: data,
+    message: result,
+  };
+  res.send(message);
+});
+
 // 查看备份详情
 app.get("/api/backup/file/:fileName", function (req, res) {
   let fileName = req.params.fileName;

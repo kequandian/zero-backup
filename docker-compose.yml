@@ -21,13 +21,26 @@ services:
       MYSQL_USER_PASSWORD: root
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
-      MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.smallsaas.cn:pw
-      MYDIFF_ORIGIN_DATA: xingyu.cloud.smallsaas.cn:23306/cinema
-      MYDIFF_DATA: 192.168.3.236:3306/cinema
-      MYDIFF_ORIGIN_DATA_USER: root
-      MYDIFF_DATA_USER: root
-      MYDIFF_ORIGIN_DATA_PASSWORD: rootAZaz@123
-      MYDIFF_DATA_PASSWORD: root
+      # 远端基础信息
+      DIFF_REMOTE: xingyu.cloud.smallsaas.cn
+      # 本地基础信息
+      DIFF_LOCAL: 192.168.3.236
+      # 数据端口
+      DIFF_REMOTE_PORT: 3306
+      # 数据端口
+      DIFF_LOCAL_PORT: 3306
+      # 远程对比数据库
+      DIFF_REMOTE_DB: cinema
+      # 本地对比数据库
+      DIFF_LOCAL_DB: cinema
+      # 远程数据库用户
+      DIFF_REMOTE_DB_USER: root
+      # 本地数据库用户
+      DIFF_LOCAL_DB_USER: root
+      # 远程数据库密钥
+      DIFF_REMOTE_DB_PWD: rootAZaz@123
+      # 本地数据库密钥
+      DIFF_LOCAL_DB_PWD: root
       # ip@port@user@password@database@table
       # TEST_ENV: 172.0.0.3@3306@root@root@test@cr_issue_task
       # PROD_ENV: 172.0.0.2@3306@root@zxcABC123@cinema@cr_issue_task
