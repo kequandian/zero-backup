@@ -106,23 +106,24 @@ module.exports = {
           },
           {
             title: '下载', type: 'export-excel',
-            "type": "request",
+            type: "request",
             options: {
               fileNameField:"id",
-              "outside": true,
+              outside: true,
               API: '/api/backup/download/(id)',
               method: 'download',
             },
           },
-          // {
-          //   title: '回滚', 
-          //   type: "request",
-          //   options: {
-          //     fileNameField:"id",
-          //     "outside": true,
-          //     API: '',
-          //   },
-          // },
+          {
+            title: '回滚', 
+            type: "request",
+            options: {
+              tips: "确定要回滚数据库吗？",
+              outside: true,
+              API: '/api/backup/rollback/(id)',
+              method: "get"
+            },
+          },
           /*{
             "title": "下载",
             "type": "request",
