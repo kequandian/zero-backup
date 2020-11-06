@@ -41,8 +41,8 @@ app.post("/api/backup/rollback", function (req, res) {
   let fileName = req.body.id;
   let result = "Invalid argument"
   if (fileName != null && fileName != "") {
-    shell.exec("mysql -h $DIFF_REMOTE -P $DIFF_REMOTE_PORT -u$DIFF_REMOTE_DB_USER -p$DIFF_REMOTE_DB_PWD $DIFF_REMOTE_DB < "+ backup_dir +"/" + fileName +" 2>/dev/null")
-    result = "回滚成功";
+    shell.exec("mysql -h $DIFF_LOCAL -P $DIFF_LOCAL_PORT -u$DIFF_LOCAL_DB_USER -p$DIFF_LOCAL_DB_PWD $DIFF_LOCAL_DB < "+ backup_dir +"/" + fileName +" 2>/dev/null")
+    result = "回滚指令成功发送";
   }
   message = {
     code: 200,
