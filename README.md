@@ -48,16 +48,7 @@
 
   根据docker-compose.yml中配置的环境变量进行数据库对比
   
-- POST：`/api/backup/rollback`
-
-  - Body（JSON）：
-
-  ```json
-  {
-      "id": "cinema-2020-10-28-02:15:00.sql"
-  }
-  ```
-
+- GET：`/api/backup/rollback/:fileName`
   根据请求JSON进行数据回滚
 
 > 默认端口 8080

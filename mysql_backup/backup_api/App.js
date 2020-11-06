@@ -37,8 +37,8 @@ app.all("*", function (req, res, next) {
 });
 
 // 回滚备份
-app.post("/api/backup/rollback", function (req, res) {
-  let fileName = req.body.id;
+app.get("/api/backup/rollback/:fileName", function (req, res) {
+  let fileName = req.params.fileName;
   let result = "Invalid argument"
   if (fileName != null && fileName != "") {
     shell.exec("mysql -h $DIFF_LOCAL -P $DIFF_LOCAL_PORT -u$DIFF_LOCAL_DB_USER -p$DIFF_LOCAL_DB_PWD $DIFF_LOCAL_DB < "+ backup_dir +"/" + fileName +" 2>/dev/null")
