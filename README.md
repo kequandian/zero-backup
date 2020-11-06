@@ -47,6 +47,18 @@
   >Tips：需确保数据库端口为互通状态
 
   根据docker-compose.yml中配置的环境变量进行数据库对比
+  
+- POST：`/api/backup/rollback`
+
+  - Body（JSON）：
+
+  ```json
+  {
+      "id": "cinema-2020-10-28-02:15:00.sql"
+  }
+  ```
+
+  根据请求JSON进行数据回滚
 
 > 默认端口 8080
 
@@ -75,19 +87,25 @@ services:
       MYSQL_USER_PASSWORD: root
       CRONTAB_DAILY_HOUR: 2
       CRONTAB_DAILY_MIN: 15
-      # 源服务器信息
-      # MYDIFF_ORIGIN_REMOTE: xing@xingyu.cloud.cn:pw
-      # 源数据库信息
-      MYDIFF_ORIGIN_DATA: mysqlserver:3306/dbname
-      # 本地数据库信息
-      MYDIFF_DATA: mysqlserver:3306/dbname
-      # 源数据库密码
-      MYDIFF_ORIGIN_DATA_PASSWORD: root
-      # 本地数据库密码
-      MYDIFF_DATA_PASSWORD: zxcABC123
-      # 源数据库账号
-      MYDIFF_ORIGIN_DATA_USER: root
-      # 本地数据库账号
-      MYDIFF_DATA_USER: root
+      # 远端基础信息
+      DIFF_REMOTE: xingyu.cloud.smallsaas.cn
+      # 本地基础信息
+      DIFF_LOCAL: 192.168.3.236
+      # 数据端口
+      DIFF_REMOTE_PORT: 3306
+      # 数据端口
+      DIFF_LOCAL_PORT: 3306
+      # 远程对比数据库
+      DIFF_REMOTE_DB: cinema
+      # 本地对比数据库
+      DIFF_LOCAL_DB: cinema
+      # 远程数据库用户
+      DIFF_REMOTE_DB_USER: root
+      # 本地数据库用户
+      DIFF_LOCAL_DB_USER: root
+      # 远程数据库密钥
+      DIFF_REMOTE_DB_PWD: rootAZaz@123
+      # 本地数据库密钥
+      DIFF_LOCAL_DB_PWD: root
 ```
 
