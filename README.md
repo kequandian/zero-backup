@@ -17,6 +17,10 @@
 
   通过文件名称下载备份文件
 
+- GET: `/api/backup/prod/download?table=x`
+
+  通过数据表名称下载生产环境数据库文件
+
 - POST: `/api/backup/doBackup`
 
   - Body（JSON）：
