@@ -137,7 +137,7 @@ app.get("/api/backup/prod/download", function (req, res) {
   // 获取待下载数据表参数名称
   let tableName = req.query.table || "";
   // 下载数据文件
-  shell.exec("mysqldump -h " + remoteDbInfo.DIFF_REMOTE + " -P " + remoteDbInfo.DIFF_REMOTE_PORT +" -u" + remoteDbInfo.DIFF_REMOTE_DB_USER +" -p" + remoteDbInfo.DIFF_REMOTE_DB_PWD + " "+ remoteDbInfo.DIFF_REMOTE_DB +" "+ tableName +"  --column-statistics=0 --compact --add-drop-table --no-data > "+ prodFileName +" 2>/dev/null");
+  shell.exec("mysqldump -h " + remoteDbInfo.host + " -P " + remoteDbInfo.port +" -u" + remoteDbInfo.user +" -p" + remoteDbInfo.password + " "+ remoteDbInfo.database +" "+ tableName +" --compact --add-drop-table --no-data > "+ prodFileName +" 2>/dev/null");
   res.download(prodFileName, function (err) {
     if (err) {
       console.log(err)
