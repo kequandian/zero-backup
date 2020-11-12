@@ -12,6 +12,17 @@ const backup_dir = fileDir;
 const backup_script_path = scriptPath;
 const latest = "latest";
 const note_json_path = "/usr/local/bin/note.json";
+// 数据库信息
+const remoteDbInfo = {     
+  host     : process.env.DIFF_REMOTE,       
+  user     : process.env.DIFF_REMOTE_DB_USER,              
+  password : process.env.DIFF_REMOTE_DB_PWD,       
+  port     : process.env.DIFF_REMOTE_PORT,                   
+  database : process.env.DIFF_REMOTE_DB
+}
+// 生产数据文件名
+const prodFileName = "./prod.sql";
+
 
 console.log("back_dir : " + backup_dir);
 console.log("backup_script_path : " + backup_script_path);
@@ -115,6 +126,24 @@ app.get("/api/backup/download/:fileName", function (req, res) {
       message = {
         code: 4000,
         message: "下载文件失败",
+      };
+      res.send(message);
+    }
+  });
+});
+
+// 下载生产环境数据库文件
+app.get("/api/backup/prod/download", function (req, res) {
+  // 获取待下载数据表参数名称
+  let tableName = req.query.table || "";
+  // 下载数据文件
+  shell.exec("mysqldump -h " + remoteDbInfo.DIFF_REMOTE + " -P " + remoteDbInfo.DIFF_REMOTE_PORT +" -u" + remoteDbInfo.DIFF_REMOTE_DB_USER +" -p" + remoteDbInfo.DIFF_REMOTE_DB_PWD + " "+ remoteDbInfo.DIFF_REMOTE_DB +" "+ tableName +"  --column-statistics=0 --compact --add-drop-table --no-data > "+ prodFileName +" 2>/dev/null");
+  res.download(prodFileName, function (err) {
+    if (err) {
+      console.log(err)
+      message = {
+        code: 4000,
+        message: "下载文件失败:" + err,
       };
       res.send(message);
     }
