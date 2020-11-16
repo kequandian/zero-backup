@@ -76,7 +76,8 @@ app.get("/api/backup/file/:fileName", function (req, res) {
 
 // 查找备份文件
 app.get("/api/backup/files", function (req, res) {
-  // let list = [];
+  // 获取待查找文件参数名称
+  let fileName = req.query.fileName || "";
   let files = fs.readdirSync(backup_dir);
   files.sort(function (a, b) {
     return (
@@ -85,13 +86,14 @@ app.get("/api/backup/files", function (req, res) {
     );
   });
   console.log("read files : " + files);
-  let fileArr = [];
-  files.forEach(function (fileName) {
-    if (fileName != latest) {
-      fileArr.push(new BackUpFile(fileName, getJson(fileName)));
-    }
-  });
-  let total = fileArr.length;
+  if(!fileName) {
+    files.splice(files.indexOf(latest), 1);
+  }else {
+    var reg = new RegExp(fileName);
+    // 删除不匹配文件名
+    files = files.filter(f => f.match(reg))
+  }
+  let total = files.length;
   let pageNum = req.query.pageNum != null ? parseInt(req.query.pageNum) : 1;
   let pageSize = req.query.pageSize != null ? parseInt(req.query.pageSize) : 10;
   let current = pageNum;
@@ -102,7 +104,7 @@ app.get("/api/backup/files", function (req, res) {
       ++pages;
     }
   }
-  let records = fileArr.slice((current - 1) * pageSize, current * pageSize);
+  let records = files.slice((current - 1) * pageSize, current * pageSize);
   result = {
     code: 200,
     data: {
