@@ -93,6 +93,8 @@ app.get("/api/backup/files", function (req, res) {
     // 删除不匹配文件名
     files = files.filter(f => f.match(reg))
   }
+  arr = []
+  files.forEach(f => arr.push(new BackUpFile(f, getJson(f))))
   let total = files.length;
   let pageNum = req.query.pageNum != null ? parseInt(req.query.pageNum) : 1;
   let pageSize = req.query.pageSize != null ? parseInt(req.query.pageSize) : 10;
@@ -104,7 +106,7 @@ app.get("/api/backup/files", function (req, res) {
       ++pages;
     }
   }
-  let records = files.slice((current - 1) * pageSize, current * pageSize);
+  let records = arr.slice((current - 1) * pageSize, current * pageSize);
   result = {
     code: 200,
     data: {
